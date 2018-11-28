@@ -26,6 +26,7 @@ class Cult
     end
   end
 
+# Returns least popular cult from all cults
   def self.least_popular
     lowest_count = Cult.all.first.followers.length
     lowest_cult = Cult.all.first
@@ -45,6 +46,7 @@ class Cult
 
   end
 
+# Creating new cult instance
   def initialize(name, location, founding_year, slogan)
     @name = name
     @location = location
@@ -54,18 +56,21 @@ class Cult
     @@all << self
   end
 
+# Gets all bloodoaths that this cult belongs to
   def bloodoaths
     Bloodoath.all.select do |bloodoath|
       bloodoath.cult == self
     end
   end
 
+# Gets all followers that this cult has
   def followers
     bloodoaths.map do |bloodoath|
       bloodoath.follower
     end
   end
 
+# Creating a cult-follower relationship via new bloodoath
   def recruit_follower(follower)
     #takes a follower instance,
     #add the follower to the cults (self) list of followers
@@ -73,12 +78,13 @@ class Cult
     Bloodoath.new(self, follower)
   end
 
+# Returns the number of followers in this cult
   def cult_population
     self.followers.length
   end
 
-  def average_age
 # returns a `Float` that is the average age of this cult's followers
+  def average_age
     total = 0.0
     count = 0
       self.followers.each do |follower|
@@ -88,12 +94,11 @@ class Cult
     total / count
   end
 
+# Returns all life mottos of the followers in this cult
   def my_followers_mottos
     self.followers.each do |follower|
       puts follower.life_motto
     end
   end
-
-
 
 end # end of Cult class

@@ -8,6 +8,7 @@ class Bloodoath
     @@all
   end
 
+# Creating a new bloodoath instance
   def initialize(cult, follower)
     @cult = cult
     @follower = follower
@@ -22,6 +23,5 @@ class Bloodoath
 
     @@all << self
   end
-
 
 end # end of Bloodoath class
